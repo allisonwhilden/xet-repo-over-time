@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Repo size over time | Files Over Time</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight,alt,wide.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight,alt,wide.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.css">
+<link rel="modulepreload" href="./_observablehq/client.js">
+<link rel="modulepreload" href="./_observablehq/runtime.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/+esm.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.13/+esm.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/+esm.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/+esm.js">
+<link rel="modulepreload" href="./_npm/d3@7.8.5/+esm.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.0/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.0.0/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/+esm.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/+esm.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/+esm.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/+esm.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.0/+esm.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/+esm.js">
+<script type="module">
+
+import {define} from "./_observablehq/client.js";
+import {registerFile} from "./_observablehq/stdlib.js";
+
+registerFile("./repodata.csv", {"name":"./repodata.csv","mimeType":"text/csv","path":"./_file/repodata.1e89063d.csv"});
+
+define({id: "bd056fc0", inputs: ["FileAttachment"], outputs: ["repodata"], body: (FileAttachment) => {
+const repodata = FileAttachment("repodata.csv").csv({typed: true});
+return {repodata};
+}});
+
+define({id: "dba0cedc", inputs: ["Inputs","Generators"], outputs: ["metric_list","metricInput","metric"], body: (Inputs,Generators) => {
+const metric_list = [
+  {name: "size", aggregation: "sum", field: "size", subtitle: "Disk space size of your repo over each commit", label:"File size (KB)"},
+  {name: "count", aggregation: "count", field: "type", subtitle: "File count of your repo over each commit", label: "File count"},
+];
+
+const metricInput = 
+  Inputs.select(metric_list, {
+    label: "Metric",
+    format: (t) => t.name,
+    value: metric_list.find((t) => t.name)
+  });
+
+const metric = Generators.input(metricInput)
+return {metric_list,metricInput,metric};
+}});
+
+define({id: "e4f9dbb7", inline: true, inputs: ["resize","Plot","metric","repodata","display"], body: async (resize,Plot,metric,repodata,display) => {
+display(await(
+    resize((width) => Plot.plot({
+      title: "Repo size over time",
+      subtitle: metric.subtitle,
+      width,
+      y: {grid: true, label: metric.label},
+      x: {label: ""},
+      color: {legend: true},
+      marks: [
+        Plot.ruleY([0]),
+        Plot.areaY(repodata, Plot.groupX({y: metric.aggregation}, {x: "timestamp", y: metric.field, fill: "type", tip: true}))
+      ]
+    }))
+  
+))
+}});
+
+define({id: "9434fcb9", inline: true, inputs: ["metricInput","display"], body: async (metricInput,display) => {
+display(await(
+metricInput
+))
+}});
+
+</script>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<h1 id="repo-size-over-time" tabindex="-1"><a class="observablehq-header-anchor" href="#repo-size-over-time">Repo size over time</a></h1>
+<style>
+
+.kpi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sans-serif);
+  margin: 4rem 0 8rem;
+  text-wrap: balance;
+  text-align: center;
+}
+
+.kpi h1 {
+  margin: 2rem 0;
+  max-width: none;
+  font-size: 8vw;
+  font-weight: 500;
+  line-height: .2;
+}
+
+.kpi h2 {
+  margin: 0;
+  max-width: 34em;
+  font-size: 14px;
+  font-style: initial;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.kpi h3 {
+  margin: 0;
+  max-width: 34em;
+  font-size: 14px;
+  font-style: initial;
+  font-weight: 500;
+  line-height: 3;
+  color: var(--theme-foreground-muted);
+}
+
+@media (min-width: 640px) {
+  .kpi h1 {
+    font-size: 50px;
+  }
+}
+
+</style>
+<div id="cell-bd056fc0" class="observablehq observablehq--block"></div>
+<div class="grid grid-cols-3" style="grid-auto-rows: 250px;">
+  <div class="card kpi">
+    <h1>5,084</h1>
+    <h2>Total MB in latest commit</h2>
+    <h3><img src="./_file/UpArrowIcon.3fbbb0fc.png"> 150 kb from previous</h3>
+  </div>
+  <div class="card kpi">
+    <h1>13</h1>
+    <h2>files changed in latest commit</h2>
+    <h3><img src="./_file/UpArrowIcon.3fbbb0fc.png"> 1 file from previous</h3>
+  </div>
+  <div class="card kpi">
+    <h1>5,084</h1>
+    <h2>Total MB in latest commit</h2>
+    <h3><img src="./_file/UpArrowIcon.3fbbb0fc.png"> 150 kb from previous</h3>
+  </div>
+</div>
+<div id="cell-dba0cedc" class="observablehq observablehq--block"></div>
+<div class="grid grid-cols-1" "="">
+  <div class="card">
+  <span id="cell-e4f9dbb7" class="observablehq--loading"></span>
+  <span id="cell-9434fcb9" class="observablehq--loading"></span>
+  </div>
+</div>
+</main>
+<footer id="observablehq-footer">
+<div>Built with <a href="https://observablehq.com/" target="_blank">Observable</a> on <a title="2024-03-12T16:07:50">Mar 12, 2024</a>.</div>
+</footer>
+</div>
