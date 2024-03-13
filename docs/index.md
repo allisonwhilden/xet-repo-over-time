@@ -6,6 +6,11 @@ theme: [light, dark, alt, wide]
 
 <style>
 
+body {
+    font-family: -apple-system, "system-ui", "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
+    font-size: 14px
+}
+
 .kpi {
   display: flex;
   flex-direction: column;
