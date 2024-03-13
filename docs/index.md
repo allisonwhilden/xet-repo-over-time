@@ -56,22 +56,25 @@ theme: [light, dark, alt, wide]
 const repodata = FileAttachment("repodata.csv").csv({typed: true});
 ```
 
-<div class="grid grid-cols-3" style="grid-auto-rows: 250px;">
-  <div class="card kpi">
-    <h1>5,084</h1>
-    <h2>Total MB in latest commit</h2>
-    <h3><img src="UpArrowIcon.png"/> 150 kb from previous</h3>
-  </div>
-  <div class="card kpi">
-    <h1>13</h1>
-    <h2>files changed in latest commit</h2>
-    <h3><img src="UpArrowIcon.png"/> 1 file from previous</h3>
+```js
+const currentFileSize = d3.sum(repodata.filter(d => d.timestamp === "3/2/24 16:56"), d => d.size)
+const previousFileSize = d3.sum(repodata.filter(d => d.timestamp === "3/2/24 16:42"), d => d.size)
+const currentFileCount = d3.count(repodata.filter(d => d.timestamp === "3/2/24 16:56"), d => d.size)
+const previousFileCount = d3.count(repodata.filter(d => d.timestamp === "3/2/24 16:42"), d => d.size)
+```
 
+
+
+<div class="grid grid-cols-2" style="grid-auto-rows: 250px;">
+  <div class="card kpi">
+    <h1>${currentFileSize}</h1>
+    <h2>Total KB in latest commit</h2>
+    <h3><img src="UpArrowIcon.png"/> ${currentFileSize - previousFileSize} kb from previous</h3>
   </div>
   <div class="card kpi">
-    <h1>5,084</h1>
-    <h2>Total MB in latest commit</h2>
-    <h3><img src="UpArrowIcon.png"/> 150 kb from previous</h3>
+    <h1>${currentFileCount}</h1>
+    <h2>files changed in latest commit</h2>
+    <h3><img src="UpArrowIcon.png"/> ${currentFileCount - previousFileCount} file from previous</h3>
   </div>
 </div>
 
