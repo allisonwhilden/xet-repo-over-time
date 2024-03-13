@@ -113,3 +113,5 @@ const metric = Generators.input(metricInput)
   ${metricInput}
   </div>
 </div>
+
+View source on [GitHub](https://github.com/allisonwhilden/xet-repo-over-time)
